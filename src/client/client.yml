@@ -1,0 +1,79 @@
+createClient:
+    handler: src/client/handler/createClient.handler
+    memorySize: 128
+    description: Submit client information and starts credit card process.
+    events:
+      - http: 
+          path: clients
+          method: post
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - sns:Publish
+        Resource: "*"
+      - Effect: Allow
+        Action:        
+          - dynamodb:PutItem
+        Resource: "*"
+
+getAllClients:
+    handler: src/client/handler/getAllClients.handler
+    memorySize: 128
+    description: List all clients registered
+    events:
+      - http: 
+          path: clients
+          method: get
+    iamRoleStatements:              
+      - Effect: Allow
+        Action:                  
+          - dynamodb:Scan          
+        Resource: "*"
+
+getClient:
+    handler: src/client/handler/getClientById.handler
+    memorySize: 128
+    description: Get Client by ID
+    events:
+      - http: 
+          path: clients/{id}
+          method: get
+    iamRoleStatements:              
+      - Effect: Allow
+        Action:                  
+          - dynamodb:getItem          
+        Resource: "*"
+
+updateClient:
+    handler: src/client/handler/updateClient.handler
+    memorySize: 128
+    description: Update Client by ID
+    events:
+      - http: 
+          path: clients/{id}
+          method: put
+    iamRoleStatements:   
+      - Effect: "Allow"
+        Action:
+          - sns:Publish
+        Resource: "*"           
+      - Effect: Allow
+        Action:                  
+          - dynamodb:updateItem          
+          - dynamodb:getItem          
+        Resource: "*"
+
+deleteClient:
+    handler: src/client/handler/deleteClient.handler
+    memorySize: 128
+    description: Delete Client by ID
+    events:
+      - http: 
+          path: clients/{id}
+          method: delete
+    iamRoleStatements:                  
+      - Effect: Allow
+        Action:                  
+          - dynamodb:updateItem          
+          - dynamodb:getItem          
+        Resource: "*"

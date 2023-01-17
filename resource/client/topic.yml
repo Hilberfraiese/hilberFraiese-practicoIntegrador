@@ -1,0 +1,6 @@
+Resources:
+  clientsTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: clientTopic
+        TopicName: ${self:service}-${self:provider.stage}-clientsTopic

@@ -1,0 +1,19 @@
+Resources:
+    ClientsDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "dni"
+            AttributeType: "S"   
+        KeySchema:
+          -
+            AttributeName: "dni"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:service}-${self:provider.stage}-CLIENT_TABLE

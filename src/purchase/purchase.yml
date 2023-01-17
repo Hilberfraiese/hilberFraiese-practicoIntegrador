@@ -1,0 +1,15 @@
+createPurchase:
+    handler: src/purchase/handler/createPurchase.handler
+    memorySize: 128
+    description: Create Purchase by DNI
+    events:
+      - http: 
+          path: purchase
+          method: post
+    iamRoleStatements:
+      - Effect: Allow
+        Action:        
+          - dynamodb:PutItem
+          - dynamodb:GetItem
+          - dynamodb:updateItem          
+        Resource: "*"

@@ -1,0 +1,33 @@
+Resources:
+  giftQueue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: "${self:service}-${self:provider.stage}-giftQueue"
+  GiftSubscription:
+        Type: 'AWS::SNS::Subscription'
+        Properties:
+          TopicArn: !Ref clientsTopic
+          Endpoint: !GetAtt 
+            - giftQueue
+            - Arn
+          Protocol: sqs
+          RawMessageDelivery: 'true'
+
+  snsToGiftQueueSqsPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: "allow-sns-messages"
+            Effect: Allow
+            Principal: "*"
+            Resource: !GetAtt
+              - giftQueue
+              - Arn
+            Action: "SQS:SendMessage"
+            Condition:
+              ArnEquals:
+                "aws:SourceArn": !Ref clientsTopic
+      Queues:
+        - Ref: giftQueue

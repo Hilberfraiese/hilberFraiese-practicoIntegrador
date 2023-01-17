@@ -1,0 +1,35 @@
+Resources:
+
+  cardQueue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: "${self:service}-${self:provider.stage}-cardQueue"
+
+  CardSubscription:
+    Type: 'AWS::SNS::Subscription'
+    Properties:
+      TopicArn: !Ref clientsTopic
+      Endpoint: !GetAtt 
+        - cardQueue
+        - Arn
+      Protocol: sqs
+      RawMessageDelivery: 'true'
+
+  snsTocardQueueSqsPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: "allow-sns-messages"
+            Effect: Allow
+            Principal: "*"
+            Resource: !GetAtt
+              - cardQueue
+              - Arn
+            Action: "SQS:SendMessage"
+            Condition:
+              ArnEquals:
+                "aws:SourceArn": !Ref clientsTopic
+      Queues:
+        - Ref: cardQueue

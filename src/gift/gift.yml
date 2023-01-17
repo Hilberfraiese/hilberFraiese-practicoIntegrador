@@ -1,0 +1,15 @@
+clientGift:
+    handler: src/gift/handler/createGift.create
+    memorySize: 128
+    description: Receive client information and generate a gift.
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - giftQueue
+              - Arn
+    iamRoleStatements:     
+      - Effect: Allow
+        Action:        
+          - dynamodb:UpdateItem
+        Resource: "*"

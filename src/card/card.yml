@@ -1,0 +1,15 @@
+clientCard:
+    handler: src/card/handler/createCard.create
+    memorySize: 128
+    description: Receive client information and generate credit card number.
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - cardQueue
+              - Arn
+    iamRoleStatements:     
+      - Effect: Allow
+        Action:        
+          - dynamodb:UpdateItem
+        Resource: "*"
