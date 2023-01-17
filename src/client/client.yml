@@ -1,5 +1,5 @@
 createClient:
-    handler: src/client/handler/createClient.handler
+    handler: src/client/handler/create-client.handler
     memorySize: 128
     description: Submit client information and starts credit card process.
     events:
@@ -17,7 +17,7 @@ createClient:
         Resource: "*"
 
 getAllClients:
-    handler: src/client/handler/getAllClients.handler
+    handler: src/client/handler/get-all-clients.handler
     memorySize: 128
     description: List all clients registered
     events:
@@ -31,7 +31,7 @@ getAllClients:
         Resource: "*"
 
 getClient:
-    handler: src/client/handler/getClientById.handler
+    handler: src/client/handler/get-client-by-id.handler
     memorySize: 128
     description: Get Client by ID
     events:
@@ -45,7 +45,7 @@ getClient:
         Resource: "*"
 
 updateClient:
-    handler: src/client/handler/updateClient.handler
+    handler: src/client/handler/update-client.handler
     memorySize: 128
     description: Update Client by ID
     events:
@@ -64,7 +64,7 @@ updateClient:
         Resource: "*"
 
 deleteClient:
-    handler: src/client/handler/deleteClient.handler
+    handler: src/client/handler/delete-client.handler
     memorySize: 128
     description: Delete Client by ID
     events:

@@ -5,14 +5,15 @@ const CLIENT_TOPIC = config.get('CLIENT_TOPIC');
 const emitClientService = async (clientCreatedEvent) => {
     console.log("emit-client-create")
     const { eventPayload, eventMeta } = clientCreatedEvent.get();
-
+    console.log("Event Payload DNI", eventPayload.dni)
+     
     const snsPublishParams = {
         TopicArn: CLIENT_TOPIC,
-        Message: eventPayload
+        Message: JSON.stringify(eventPayload)
     };
 
     await sns.publish(snsPublishParams, eventMeta)
 }
 
 
-module.exports = { emitClientCreated };
+module.exports = { emitClientService };

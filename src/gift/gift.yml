@@ -1,5 +1,5 @@
 clientGift:
-    handler: src/gift/handler/createGift.create
+    handler: src/gift/handler/create-gift.handler
     memorySize: 128
     description: Receive client information and generate a gift.
     events:

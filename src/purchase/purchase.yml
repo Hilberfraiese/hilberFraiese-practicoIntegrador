@@ -1,5 +1,5 @@
 createPurchase:
-    handler: src/purchase/handler/createPurchase.handler
+    handler: src/purchase/handler/create-purchase.handler
     memorySize: 128
     description: Create Purchase by DNI
     events:

@@ -24,7 +24,7 @@ module.exports = async (commandPayload, commandMeta) => {
 
     console.log({data});
     await createClientService(data);    
-    await emitClientCreated(new ClientCreatedEvent(data, commandMeta));
+    await emitClientService(new ClientCreatedEvent(data, commandMeta));
     
     return {status: 200, body: 'Client Created' };   
 

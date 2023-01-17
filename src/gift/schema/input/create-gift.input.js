@@ -1,3 +1,5 @@
+//@ts-check
+
 const { InputValidation } = require('ebased/schema/inputValidation');
 
 

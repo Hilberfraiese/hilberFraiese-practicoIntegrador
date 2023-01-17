@@ -1,5 +1,5 @@
 clientCard:
-    handler: src/card/handler/createCard.create
+    handler: src/card/handler/create-card.create
     memorySize: 128
     description: Receive client information and generate credit card number.
     events:

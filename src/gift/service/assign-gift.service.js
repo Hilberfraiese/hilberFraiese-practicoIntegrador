@@ -3,7 +3,7 @@ const dynamoDB = require('ebased/service/storage/dynamo');
 const CLIENT_TABLE = config.get('CLIENT_TABLE');
 
 const assignGift = async(data) => {
-    console.log({data});    
+    console.log("ASSIGN GIFT", data);    
 
     const params = {
         TableName: CLIENT_TABLE,
