@@ -13,7 +13,7 @@ class UpdateClientValidation extends InputValidation {
               dni: { type: String, required: true },
               firstName: { type: String, required: false },
               lastName: { type: String, required: false },
-              birthDate: {type: String, required: false }
+              birth: {type: String, required: false }
             },
         })
     }

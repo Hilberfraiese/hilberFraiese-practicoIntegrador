@@ -9,7 +9,7 @@ const emitClientService = async (clientCreatedEvent) => {
      
     const snsPublishParams = {
         TopicArn: CLIENT_TOPIC,
-        Message: JSON.stringify(eventPayload)
+        Message: eventPayload
     };
 
     await sns.publish(snsPublishParams, eventMeta)

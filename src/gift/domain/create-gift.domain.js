@@ -3,9 +3,9 @@ const { CreateGiftValidation } = require('../schema/input/create-gift.input');
 const { assignGift } = require('../service/assign-gift.service');
 
 module.exports = async (commandPayload, commandMeta) => {
-
-    const { birthDate, dni } = new CreateGiftValidation(commandPayload, commandMeta).get();
-    const month = new Date(birthDate).getMonth();
+    console.log("create gift domain")
+    const { birth, dni } = new CreateGiftValidation(commandPayload, commandMeta).get();
+    const month = new Date(birth).getMonth();
     const gift = getSeasonGift(month);
     const dbParams = { update: { gift }, dni };
 

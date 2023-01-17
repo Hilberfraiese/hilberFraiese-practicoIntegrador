@@ -13,7 +13,7 @@ class CreateGiftValidation extends InputValidation {
           schema: {
             strict: false,
             dni: { type: String, required: true },
-            birthDate: { type: String, required: true }
+            birth: { type: String, required: true }
           },
         })
       }

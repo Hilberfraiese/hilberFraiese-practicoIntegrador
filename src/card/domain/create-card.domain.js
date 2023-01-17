@@ -11,10 +11,10 @@ const MAX_CODE_NUM = 999;
 
 module.exports = async (commandPayload, commandMeta) => {
 
-    console.log({ commandPayload });
+    console.log("create card domain",commandPayload);
 
-    const { birthDate, dni } = new CreateCardValidation(commandPayload, commandMeta).get();
-    const type = calculateAge(birthDate) > 45 ? 'Gold' : 'Classic';
+    const { birth, dni } = new CreateCardValidation(commandPayload, commandMeta).get();
+    const type = calculateAge(birth) > 45 ? 'Gold' : 'Classic';
     const cardNumber = randomNumber(1000, 9999) + '-' +
         randomNumber(1000, 9999) + '-' +
         randomNumber(1000, 9999) + '-' +
